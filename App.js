@@ -1,12 +1,77 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { View, StyleSheet, Button } from 'react-native';
+import { Audio } from 'expo-av';
+
+function randomNumber(min, max) { 
+  return Math.floor(Math.random() * (max - min) + min);
+} 
 
 export default function App() {
+  const [sound, setSound] = React.useState();
+
+  async function loadSound() {
+    console.log('Loading Sound');
+    const boom = await Audio.Sound.createAsync(
+      require('./assets/audio/boom.mp3')
+    );
+    const god_bless_ya = await Audio.Sound.createAsync(
+      require('./assets/audio/god_bless_ya.mp3')
+    );
+    const kill_ya = await Audio.Sound.createAsync(
+      require('./assets/audio/kill_ya.mp3')
+    );
+    const lagging = await Audio.Sound.createAsync(
+      require('./assets/audio/lagging.mp3')
+    );
+    const make_you_cry = await Audio.Sound.createAsync(
+      require('./assets/audio/make_you_cry.mp3')
+    );
+    const not_a_big_deal = await Audio.Sound.createAsync(
+      require('./assets/audio/not_a_big_deal.mp3')
+    );
+    const shoot_your_teacher = await Audio.Sound.createAsync(
+      require('./assets/audio/shoot_your_teacher.mp3')
+    );
+    const shotgun = await Audio.Sound.createAsync(
+      require('./assets/audio/shotgun.mp3')
+    );
+    const who_cares = await Audio.Sound.createAsync(
+      require('./assets/audio/who_cares.mp3')
+    );
+
+    let audios = [
+      boom,
+      god_bless_ya,
+      kill_ya,
+      lagging,
+      make_you_cry,
+      not_a_big_deal,
+      shoot_your_teacher,
+      shotgun,
+      who_cares
+    ]
+
+    const {sound} = audios[randomNumber(0, audios.length)]
+    return sound
+  }
+  async function playSound() {
+    sound = loadSound()
+    setSound(sound);
+
+    console.log('Playing Sound');
+    await sound.playAsync(); }
+
+  React.useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync(); }
+      : undefined;
+  }, [sound]);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Button title="Shahab" onPress={playSound} />
     </View>
   );
 }
@@ -14,8 +79,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+    padding: 10,
   },
 });
