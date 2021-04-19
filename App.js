@@ -1,7 +1,15 @@
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
-import { View, StyleSheet, Button } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import { Audio } from "expo-av";
+import { Button } from "react-native-elements";
+import shahab from "./assets/shahab/math_jail.png";
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -70,7 +78,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Button title="Shahab" onPress={playSound} />
+      <Image source={shahab} style={styles.image} />
+      <TouchableOpacity>
+        <Button title="Shahab" onPress={playSound} style={styles.button} />
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
@@ -80,7 +91,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#ecf0f1",
-    padding: 10,
+    backgroundColor: "white",
+  },
+  image: {
+    width: Dimensions.get("screen").width,
+    resizeMode: "contain",
+  },
+  button: {
+    alignSelf: "center",
+    width: Dimensions.get("screen").width / 2,
   },
 });
