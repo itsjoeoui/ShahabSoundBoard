@@ -11,7 +11,6 @@ export default function App() {
   const [sound, setSound] = React.useState();
 
   async function loadSound() {
-    console.log("Loading Sound");
     const boom = await Audio.Sound.createAsync(
       require("./assets/audio/boom.mp3")
     );
@@ -52,21 +51,18 @@ export default function App() {
       who_cares,
     ];
 
-    const { sound } = audios[randomNumber(0, audios.length)];
-    return sound;
+    return audios[randomNumber(0, audios.length)];
   }
-  async function playSound() {
-    sound = loadSound();
-    setSound(sound);
 
-    console.log("Playing Sound");
+  async function playSound() {
+    const { sound } = await loadSound();
+    setSound(sound);
     await sound.playAsync();
   }
 
   React.useEffect(() => {
     return sound
       ? () => {
-          console.log("Unloading Sound");
           sound.unloadAsync();
         }
       : undefined;
