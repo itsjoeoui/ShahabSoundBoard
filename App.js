@@ -1,43 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import * as React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
-import { Audio } from 'expo-av';
+import { StatusBar } from "expo-status-bar";
+import * as React from "react";
+import { View, StyleSheet, Button } from "react-native";
+import { Audio } from "expo-av";
 
-function randomNumber(min, max) { 
+function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
-} 
+}
 
 export default function App() {
   const [sound, setSound] = React.useState();
 
   async function loadSound() {
-    console.log('Loading Sound');
+    console.log("Loading Sound");
     const boom = await Audio.Sound.createAsync(
-      require('./assets/audio/boom.mp3')
+      require("./assets/audio/boom.mp3")
     );
     const god_bless_ya = await Audio.Sound.createAsync(
-      require('./assets/audio/god_bless_ya.mp3')
+      require("./assets/audio/god_bless_ya.mp3")
     );
     const kill_ya = await Audio.Sound.createAsync(
-      require('./assets/audio/kill_ya.mp3')
+      require("./assets/audio/kill_ya.mp3")
     );
     const lagging = await Audio.Sound.createAsync(
-      require('./assets/audio/lagging.mp3')
+      require("./assets/audio/lagging.mp3")
     );
     const make_you_cry = await Audio.Sound.createAsync(
-      require('./assets/audio/make_you_cry.mp3')
+      require("./assets/audio/make_you_cry.mp3")
     );
     const not_a_big_deal = await Audio.Sound.createAsync(
-      require('./assets/audio/not_a_big_deal.mp3')
+      require("./assets/audio/not_a_big_deal.mp3")
     );
     const shoot_your_teacher = await Audio.Sound.createAsync(
-      require('./assets/audio/shoot_your_teacher.mp3')
+      require("./assets/audio/shoot_your_teacher.mp3")
     );
     const shotgun = await Audio.Sound.createAsync(
-      require('./assets/audio/shotgun.mp3')
+      require("./assets/audio/shotgun.mp3")
     );
     const who_cares = await Audio.Sound.createAsync(
-      require('./assets/audio/who_cares.mp3')
+      require("./assets/audio/who_cares.mp3")
     );
 
     let audios = [
@@ -49,24 +49,26 @@ export default function App() {
       not_a_big_deal,
       shoot_your_teacher,
       shotgun,
-      who_cares
-    ]
+      who_cares,
+    ];
 
-    const {sound} = audios[randomNumber(0, audios.length)]
-    return sound
+    const { sound } = audios[randomNumber(0, audios.length)];
+    return sound;
   }
   async function playSound() {
-    sound = loadSound()
+    sound = loadSound();
     setSound(sound);
 
-    console.log('Playing Sound');
-    await sound.playAsync(); }
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
 
   React.useEffect(() => {
     return sound
       ? () => {
-          console.log('Unloading Sound');
-          sound.unloadAsync(); }
+          console.log("Unloading Sound");
+          sound.unloadAsync();
+        }
       : undefined;
   }, [sound]);
 
@@ -81,8 +83,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
+    justifyContent: "center",
+    backgroundColor: "#ecf0f1",
     padding: 10,
   },
 });
