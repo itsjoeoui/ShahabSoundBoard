@@ -1,3 +1,4 @@
+import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { View, StyleSheet, Button } from 'react-native';
 import { Audio } from 'expo-av';
@@ -72,6 +73,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Button title="Shahab" onPress={playSound} />
+      <StatusBar style="auto" />
     </View>
   );
 }
