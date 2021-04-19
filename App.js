@@ -12,31 +12,31 @@ export default function App() {
 
   async function loadSound() {
     const boom = await Audio.Sound.createAsync(
-      require("./assets/audio/boom.mp3")
+      require("./assets/shahab/boom.mp3")
     );
     const god_bless_ya = await Audio.Sound.createAsync(
-      require("./assets/audio/god_bless_ya.mp3")
+      require("./assets/shahab/god_bless_ya.mp3")
     );
     const kill_ya = await Audio.Sound.createAsync(
-      require("./assets/audio/kill_ya.mp3")
+      require("./assets/shahab/kill_ya.mp3")
     );
     const lagging = await Audio.Sound.createAsync(
-      require("./assets/audio/lagging.mp3")
+      require("./assets/shahab/lagging.mp3")
     );
     const make_you_cry = await Audio.Sound.createAsync(
-      require("./assets/audio/make_you_cry.mp3")
+      require("./assets/shahab/make_you_cry.mp3")
     );
     const not_a_big_deal = await Audio.Sound.createAsync(
-      require("./assets/audio/not_a_big_deal.mp3")
+      require("./assets/shahab/not_a_big_deal.mp3")
     );
     const shoot_your_teacher = await Audio.Sound.createAsync(
-      require("./assets/audio/shoot_your_teacher.mp3")
+      require("./assets/shahab/shoot_your_teacher.mp3")
     );
     const shotgun = await Audio.Sound.createAsync(
-      require("./assets/audio/shotgun.mp3")
+      require("./assets/shahab/shotgun.mp3")
     );
     const who_cares = await Audio.Sound.createAsync(
-      require("./assets/audio/who_cares.mp3")
+      require("./assets/shahab/who_cares.mp3")
     );
 
     let audios = [
